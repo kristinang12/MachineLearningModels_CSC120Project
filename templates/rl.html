@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Reinforcement Learning</title>
+        <!-- Favicon-->
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/static/static1/css/styles.css" rel="stylesheet" />
+
+         <!-- bootstrap css -->
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+        <!-- style css -->
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <!-- Responsive-->
+        <link rel="stylesheet" href="/static/css/responsive.css">
+        <!-- fevicon -->
+        <link rel="icon" href="/static/images/favicon.png" type="image/gif" />
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+        <!-- Tweaks for older IEs-->
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Poppins:400,700&display=swap" rel="stylesheet">
+        <!-- owl stylesheets -->
+        <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+        <link rel="stylesoeet" href="/static/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+            media="screen">
+
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/" style="color: rgb(183, 171, 42); font-weight: bold;">Machine Learning</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <div class="nav-item"><a class="nav-link active" aria-current="page" style="color: rgb(185, 172, 35); font-weight: bold;" href="#section1">Guide</a></div>
+                        <div class="nav-item"><a class="nav-link active" aria-current="page" style="color: rgb(185, 172, 35); font-weight: bold;" href="#section_model">Model</a></div>
+                        <div class="nav-item"><a class="nav-link active" aria-current="page" style="color: rgb(185, 172, 35); font-weight: bold;" href="#about_ui_section">UI</a></div>
+                        <div class="nav-item"><a class="nav-link active" aria-current="page" style="color: rgb(187, 175, 39); font-weight: bold;" href="/">Home</a></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Header - set the background image for the header in the line below-->
+        <!-- Content section-->
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_taital_main">
+                           <div class="about_taital">What is Reinforcement Learning?</div>
+                           <p class="about_text">Reinforcement Learning (RL) is a machine learning paradigm that 
+                            involves agents acting as domain experts, making decisions without relying on labeled data<sup><a href="#ref1">[1]</a></sup>. By interacting with the environment, observing outcomes, and adapting based on experiences, RL learns from these interactions to improve decision-making. 
+                             <br>
+                             </p>
+                           <div class="read_more_bt_1"><a href="https://www.synopsys.com/ai/what-is-reinforcement-learning.html">Learn More about RL</a></div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="about_box">
+                           <div class="image_1"><img src="/static/images/img-rl.png"></div>
+                           <h4 class="making_text">Reinforcement Learning</h4>
+                        </div>
+                     </div>
+                     <div class="about_box">
+                        <div class="about_taital1">Basic Concept of RL<sup><a href="#ref2">[2]</a></sup></div>
+                            <ul>
+                                <li>
+                                    <strong>Reward</strong>
+                                    <p class="about_text"> In Reinforcement Learning, the reward function provides feedback from the environment, representing the objective or goal. Rewards are numerical values associated with specific states or state-action pairs, and they define the objective the agent aims to achieve in a particular situation. </p>
+                                </li>
+                                <li>
+                                    <strong>State & Action</strong>
+                                    <p class="about_text" >The concepts of state and action in reinforcement learning are broad and encompass various elements. An action refers to any decision that an agent needs to learn and make, while a state represents any factor that the agent considers when making that decision. The state, which influences the action, can include a model of the environment, potentially encompassing past states of the agent's surroundings.</p>
+                                </li>
+                                <li>
+                                    <strong>Value Function</strong>
+                                    <p class="about_text" >The value function in reinforcement learning represents the agent's current estimation of the overall long-term reward that can be expected when visiting a particular state or taking a specific action in that state. It reflects the agent's understanding of the cumulative future rewards based on its current policy. The value function is continuously updated as the agent gains experience and observes the outcomes and consequences of its actions.</p>
+                                </li>
+                            </ul>
+                             
+                        </div>
+
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <div class="about_taital1">Several Application of RL<sup><a href="#ref3">[3]</a></sup></div>
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_taital_main">
+                            <div class="about_taital">1. Recommender System</div>
+                           <p class="about_text">Recommender system is a tool that provides personalized suggestions to users based on their preferences. It helps mitigate the problem of information overload by offering tailored recommendations for various categories such as news, movies, music, restaurants, and more.
+                             <br>
+                             </p>
+                            <p class="about_text">In the context of recommender systems, reinforcement learning can be used to learn an optimal policy for making recommendations. The recommender system can be modeled as an RL agent that interacts with users and the environment. The agent takes actions (recommending items) based on the observed states (user preferences, historical data, etc.) and receives rewards or feedback (user feedback, click-through rates, conversion rates, etc.) from the environment.</p>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="about_box">
+                           <div class="image_1"><img src="/static/images/img-rs.png"></div>
+                           <h4 class="making_text">Reinforcement Learning</h4>
+                        </div>
+                     </div>
+
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                     <div class="col-md-6">
+                            <div class="about_box3 ">
+                               <div class="image_1"><img src="/static/images/img-cs.png"></div>
+                               <h4 class="making_text">Cluster Scheduling</h4>
+                            </div>
+                         </div>
+                         <div class="col-md-6">
+                            <div class="about_taital_main2">
+                                <div class="about_taital">2. Computer Systems</div>
+                                <ul>
+                                    <li>neural architecture search</li>
+                                    <li>device placement</li>
+                                    <li>data augmentation</li>
+                                    <li> cluster scheduling</li>
+                                    <li>an open platform for computer systems</li> 
+                                    <li> NP- hard problems</li>
+                                </ul>
+                            </div>
+                         </div>
+
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_taital_main2">
+                            <div class="about_taital">3. Finance</div>
+                            <ul>
+                                <li>Option pricing</li>
+                                <li>Order book execution</li>
+                                
+                            </ul>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                            <div class="about_box3 ">
+                               <div class="image_1"><img src="/static/images/img-finance.png"></div>
+                               <h4 class="making_text">Business Use Case</h4>
+                            </div>
+                         </div>
+                         
+
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_box3 ">
+                           <div class="image_1"><img src="/static/images/img-healthcare.jpg"></div>
+                           <h4 class="making_text">Healthcare</h4>
+                        </div>
+                     </div>
+                    <div class="col-md-6">
+                        <div class="about_taital_main2">
+                            <div class="about_taital">4. Healthcare</div>
+                            <ul>
+                                <li>Dynamic treatment strategies </li>
+                                 <li>Medical image report generation</li>
+                                
+                            </ul>
+                        </div>
+                     </div>
+                     
+                         
+
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="about_section layout_padding" id="section_model">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <div class="about_taital1">Drug Recommendation System Using Reinforcement Learning<sup><a href="#ref4">[4]</a></sup> </div>
+                        <div class="about_box">
+                                <p class="about_text">
+                                    In recent times, there have been significant advancements in the healthcare sector that have positively impacted the lives of patients and enhanced clinical decision-making. Utilizing machine learning and data mining techniques, the applications in this field can transform vast amounts of data into meaningful insights. These insights can then be utilized to analyze disease symptoms and make recommendations for suitable medications, thereby improving patient care.
+                                </p>
+                                <p class="about_text">
+                                    A machine learning approach for multi-disease with drug recommendation can be proposed to provide accurate drug recommendations for the patients suffering from various diseases. 
+                                </p> 
+
+                                <ul>
+                                    <li>
+                                        <strong>Model Used</strong>
+                                        <p class="about_text"> For the Drug Recommendation System, the model used in this 
+                                            reinforcement learning agent is a Q-table. The Q-table is a data structure that stores 
+                                            the Q-values for each state-action pair. In this case, the state corresponds to a 
+                                            condition for which drugs are being recommended, and the action corresponds to 
+                                            the selection of a drug. The Q-values represent the expected cumulative reward for taking a specific action in a given state.</p>
+                                    </li>
+                                    <li>
+                                        <strong>Model Concepts </strong>
+                                        <p class="about_text"> 
+                                            The agent uses the Q-table to make decisions about drug recommendations. It employs the epsilon-greedy
+                                             exploration-exploitation strategy to balance between exploration (randomly selecting drugs) and 
+                                             exploitation (selecting drugs based on the Q-values). The learning rate and discount factor are 
+                                             used to update the Q-values based on the observed rewards and the maximum expected future rewards.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <strong>Performance Metric of the Model </strong>
+                                        <p class="about_text"> 
+                                            The agent also keeps track of the cumulative reward and computes regret, which measures 
+                                            the difference between the optimal reward and the reward obtained by the agent. The 
+                                            <strong>regret </strong> is used to evaluate the performance of the agent and assess how well it 
+                                            learns to recommend drugs. The smaller the regret, the better the performance of the model.
+                                        </p>
+                                    </li>
+                                </ul>
+
+                               
+                                
+                         </div>
+                            
+                     </div>
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_taital_main">
+                           <div class="about_taital">About the Datasets</div>
+                           <p class="about_text">The datasets is from Kaggle<sup><a href="#ref5">[5]</a></sup>. The drug dataset holds significant value in suggesting appropriate medications 
+                            according to the specific disease. Analyzing user rating becomes a valuable aspect in determining
+                            .This information can then be utilized to prescribe 
+                            the most suitable medicine for particular diseases and health conditions.<sup><a href="#ref5">[5]</a></sup> </p>
+                           
+                             <br>
+                             </p>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="about_box">
+                           <div class="image_1"><img src="/static/images/img-drugr.png"></div>
+                           <h4 class="making_text">Drug Recommendation</h4>
+                        </div>
+                        
+                     </div>
+                     
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="about_section layout_padding" id="section1">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <div class="about_taital1">Guide for the Drug Recommendation System<sup><a href="#ref4">[4]</a></sup> </div>
+                        <div class="about_box">
+                                <p class="about_text">
+                                    To use the Recommender System, simply click on the "UI" keyword in the navigation bar next 
+                                    to the "HOME" keyword on this webpage to render the section for UI. On the UI page, you will be prompted to enter the 
+                                    desired condition (e.g., Birth Control). After clicking the submit button, you will proceed 
+                                    to the next page. On that page, you will find three recommended drugs for the submitted 
+                                    condition. Additionally, you can provide ratings for the selected drug. By doing so, you 
+                                    contribute to improving the recommendation system. Drugs with ratings below 5 will no longer 
+                                    be recommended, while drugs with ratings above 5 will be suggested for that particular
+                                    condition.
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>REGRET</strong>
+                                        <p class="about_text"> 
+                                            In page of UI, there's a keyword 'REGRET' in the navigation bar, just click the Regret 
+                                            keyword for check the model performance metric of the reinforcement learning. If you 
+                                            train the recommender system and you see the a lot's of value for regret. The below 
+                                            value will be the final regret as the regret for the model performance metric.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <strong>RESULTS</strong>
+                                        <p class="about_text"> 
+                                           In page of UI, there's also a keyword 'RESULTS' in the navigation bar, just click the 
+                                           results keyword to view the result of the recommender system base on the given condition.
+                                           <li>RESET BUTTON</li>
+                                           <p class="about_text">
+                                                The reset button you will see it inside the <storng>RESULTS</storng>, Click the reset button to reset the recommender system. 
+                                           </p>
+                                        </p>
+
+                                    </li>
+                                    <li>
+                                        <strong>HOME</strong>
+                                        <p class="about_text"> 
+                                           In page of UI, there's also a keyword 'HOME' in the navigation bar, just click the 
+                                           home keyword to go the homepage. 
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <strong>Reinforcement Learning</strong>
+                                        <p class="about_text"> 
+                                           In page of UI, there's also a keyword 'Reinforcement Learning' in the navigation bar, just click the 
+                                           Reinforcement Learning keyword to go the reinforcement learning page. 
+                                        </p>
+                                    </li>
+                                </ul>
+                            
+                               
+                                
+                         </div>
+                            
+                     </div>
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+
+        <section id="about_ui_section">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <div class="about_taital5">Click for the User Interface for the Drug Recommendation System</div>
+                        <div class="read_bt"><a href="/rl_ui">Click for UI</a></div>
+                     </div>
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <div class="about_taital1">References</div>
+                        <div class="about_box">
+                                <p class="about_text">
+                                    <div id="ref1">
+                                        <p>[1] Almahamid, F., & Grolinger, K. (2021). Reinforcement Learning Algorithms: An Overview and Classification. Canadian Conference on Electrical and Computer Engineering, 2021-Septe(September), 2006–2007. <a href="https://doi.org/10.1109/CCECE53047.2021.9569056">https://doi.org/10.1109/CCECE53047.2021.9569056</a><br>
+                                        </p>
+                                    </div>
+            
+                                    <div id="ref2">
+                                        <p>[2]Li, Y. (2019). Reinforcement Learning Applications. 1–41. <a href="http://arxiv.org/abs/1908.06973">http://arxiv.org/abs/1908.06973 </a><br></p>
+                                    </div>
+                                    <div id="ref3">
+                                        <p>[3] Sutton, R. S., & Barto,  a G. (1999). Book Reviews Reinforcement Learning. Journal of Cognitive Neuroscience, 11(1), 126–134.
+                                        </p>
+            
+                                    </div>
+                                    <div id="ref4">
+                                        <p>[4] "Medicine Recommendation", Kaggle, 2020. [ONLINE] Available: <a href="https://www.kaggle.com/code/mpwolke/medicine-recommendation">https://www.kaggle.com/code/mpwolke/medicine-recommendation</a>
+                                        </p>
+                                        
+                                    </div>
+                                    <div id="ref5">
+                                        <p>[5] "Drug Recommendation", Kaggle, 2020. [ONLINE] Available: <a href="https://www.kaggle.com/datasets/subhajournal/drug-recommendations">https://www.kaggle.com/datasets/subhajournal/drug-recommendations</a>
+                                        </p>
+                                        
+                                    </div>
+                                </p>
+                                
+                            </div>
+                            
+                     </div>
+                     </div>
+                    <br>
+                </div>
+            </div>
+        </section>
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        
+                </div>
+            </div>
+        </section>
+        
+        <!-- Image element - set the background image for the header in the line below-->
+        
+        <!-- Content section-->
+        
+        
+        <!-- Footer-->
+         <!-- Footer-->
+         <footer class="footer_section">
+            <div class="container">
+                <p class="m-0" style="color: rgb(185, 172, 35)">Machine Learning<br>Logistic Regression Model</p>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/static/static1/js/scripts.js"></script>
+
+        <!-- copyright section end -->
+        <!-- Javascript files-->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/js/jquery-3.0.0.min.js"></script>
+        <script src="/static/js/plugin.js"></script>
+        <!-- sidebar -->
+        <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/static/js/custom.js"></script>
+        <!-- javascript -->
+        <script src="/static/js/owl.carousel.js"></script>
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    </body>
+</html>

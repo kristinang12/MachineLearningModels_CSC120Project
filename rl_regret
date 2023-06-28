@@ -1,0 +1,164 @@
+# Load your dataset
+dataset = pd.read_csv('sample10.csv')  # Replace 'drugs_datasets.csv' with your actual dataset file
+
+# Define the reinforcement learning agent
+class DrugRecommendationAgentRL:
+    def __init__(self, dataset):
+        self.dataset = dataset
+        self.q_table = {}  # Add a Q-table attribute for the agent
+        self.learning_rate = 0.1  # Set the learning rate
+        self.discount_factor = 0.9  # Set the discount factor
+        self.epsilon = 0.2  # Set the exploration rate
+        self.previous_recommendations = []  # Store previous recommendations
+        self.high_rated_drug = None  # Store the highest rated drug from previous round
+        self.rating_threshold = 5  # Set the rating threshold for drug recommendation
+        self.avoided_drugs = []  # Store drugs to be avoided due to low ratings
+        self.regret = 0  # Store the regret value
+    
+    def recommend_drug(self, condition, user_rating=None):
+        condition = condition.lower()
+
+        if random.random() < self.epsilon:
+            # Explore: Select a random drug
+            matching_drugs = self.get_drugs_for_condition(condition)
+            if not matching_drugs.empty:
+                # Remove drugs with a rating below the threshold that were recommended in the previous round
+                matching_drugs = matching_drugs[~matching_drugs['drugName'].isin(self.previous_recommendations)]
+                
+                # Remove drugs that have been avoided due to low ratings
+                matching_drugs = matching_drugs[~matching_drugs['drugName'].isin(self.avoided_drugs)]
+                
+                # Add the highest rated drug from the previous round if available
+                if self.high_rated_drug is not None and self.high_rated_drug not in matching_drugs['drugName'].tolist():
+                    matching_drugs = matching_drugs.append({'drugName': self.high_rated_drug}, ignore_index=True)
+                
+                sample_size = min(3, len(matching_drugs))  # Ensure sample size doesn't exceed the available drugs
+                
+                # Filter out blank recommendations
+                recommendations = random.sample(matching_drugs['drugName'].tolist(), k=sample_size)
+                recommendations = [r for r in recommendations if r.strip()]
+                
+                if recommendations:
+                    return recommendations
+                else:
+                    return ['No drugs found for the given condition.']
+            else:
+                return ['No drugs found for the given condition.']
+        else:
+            # Exploit: Select drugs randomly without considering ratings
+            matching_drugs = self.get_drugs_for_condition(condition)
+            if not matching_drugs.empty:
+                # Remove drugs with a rating below the threshold that were recommended in the previous round
+                matching_drugs = matching_drugs[~matching_drugs['drugName'].isin(self.previous_recommendations)]
+                
+                # Remove drugs that have been avoided due to low ratings
+                matching_drugs = matching_drugs[~matching_drugs['drugName'].isin(self.avoided_drugs)]
+                
+                # Add the highest rated drug from the previous round if available
+                if self.high_rated_drug is not None and self.high_rated_drug not in matching_drugs['drugName'].tolist():
+                    matching_drugs = matching_drugs.append({'drugName': self.high_rated_drug}, ignore_index=True)
+                
+                sample_size = min(3, len(matching_drugs))  # Ensure sample size doesn't exceed the available drugs
+                
+                # Filter out blank recommendations
+                recommendations = random.sample(matching_drugs['drugName'].tolist(), k=sample_size)
+                recommendations = [r for r in recommendations if r.strip()]
+                
+                if recommendations:
+                    return recommendations
+                else:
+                    return ['No drugs found for the given condition.']
+            else:
+                return ['No drugs found for the given condition.']
+    
+    def update(self, state, action, reward, next_state):
+        # Update Q-value based on the observed experience
+        if state not in self.q_table:
+            self.q_table[state] = {}
+
+        if isinstance(action, list):
+            actions = action
+        else:
+            actions = [action]
+
+        for action in actions:
+            action = tuple(action)  # Convert action to a tuple
+            if action not in self.q_table[state]:
+                self.q_table[state][action] = 0
+
+            current_q_value = self.q_table[state][action]
+
+            next_state_str = str(next_state)  # Convert the next_state list to a string
+            if next_state_str not in self.q_table:
+                self.q_table[next_state_str] = {}
+
+            next_q_values = self.q_table[next_state_str]
+            max_next_q_value = max(next_q_values.values()) if next_q_values else 0
+
+            # Adjust the learning rate based on the reward
+            if reward < 0:
+                # Apply a higher learning rate for negative rewards
+                adjusted_learning_rate = self.learning_rate * 2.0
+            else:
+                adjusted_learning_rate = self.learning_rate
+
+            new_q_value = (1 - adjusted_learning_rate) * current_q_value + adjusted_learning_rate * (
+                    reward + self.discount_factor * max_next_q_value)
+
+            self.q_table[state][action] = new_q_value
+            
+            # Update regret
+            if reward < 0:
+                self.regret += abs(reward)
+            
+    def get_drugs_for_condition(self, condition):
+        return self.dataset.loc[self.dataset['condition'].str.lower().eq(condition)]
+
+# Instantiate the recommendation agent with reinforcement learning
+agent = DrugRecommendationAgentRL(dataset)
+
+@app.route('/rl_ui', methods=['POST', 'GET'])
+def rl_ui():
+    condition = ""
+    recommended_drugs = []
+    regret = 0  # Initialize regret to 0
+    
+    if request.method == 'POST':
+        condition = request.form['condition']
+        
+        if 'user_rating' in request.form:
+            user_rating = int(request.form['user_rating'])
+        else:
+            user_rating = None
+        
+        recommended_drugs = agent.recommend_drug(condition, user_rating)
+
+        if 'selected_drug' in request.form and 'rating' in request.form:
+            selected_drug = request.form['selected_drug']
+            rating = int(request.form['rating'])
+            
+            # Update the agent's state based on the rating
+            if rating < agent.rating_threshold:
+                agent.avoided_drugs.append(selected_drug)
+
+            agent.update(condition, selected_drug, rating, recommended_drugs)
+        else:
+            # User hasn't provided a rating yet, display the recommend_drugs template
+            return render_template('recommend_drug.html', recommended_drugs=recommended_drugs, condition=condition)
+        
+        # Store the recommended drugs in previous_recommendations
+        agent.previous_recommendations = recommended_drugs
+        
+        # Store the highest rated drug from the previous round if the user provided a rating
+        if user_rating is not None and user_rating > 5:
+            agent.high_rated_drug = recommended_drugs[0]
+        else:
+            agent.high_rated_drug = None
+        
+        # Calculate regret
+        if user_rating is not None and user_rating < 5:
+            regret = 5 - user_rating
+        else:
+            regret = 0
+        
+    return render_template('rate_drug.html', recommended_drugs=recommended_drugs, condition=condition, regret=regret)
